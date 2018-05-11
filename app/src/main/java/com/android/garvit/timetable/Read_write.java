@@ -18,13 +18,13 @@ public class Read_write {
         this.context = context;
     }
 
-    void write(Subjects subjects){
+    void write(Subject subject){
         String filename = "Timetable.txt";
         File file = new File(context.getFilesDir(), filename);
         try {
             FileOutputStream fos = new FileOutputStream(filename);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(subjects);
+            oos.writeObject(subject);
             oos.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,12 +40,12 @@ public class Read_write {
         }
     }
 
-    void write_list(List<Subjects> subjectList){
+    void write_list(List<Subject> subjectList){
         String filename = "Timetable.txt";
         try {
             FileOutputStream fos = new FileOutputStream(filename);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            for(Subjects S : subjectList){
+            for(Subject S : subjectList){
             oos.writeObject(S);
             }
             oos.close();
@@ -54,13 +54,13 @@ public class Read_write {
         }
     }
 
-    List<Subjects> read() {
+    List<Subject> read() {
         String filename = "Timetable.txt";
-        List<Subjects> SubjectList = null;
+        List<Subject> SubjectList = null;
         try {
             FileInputStream fis = new FileInputStream(filename);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            SubjectList = (List<Subjects>) ois.readObject();
+            SubjectList = (List<Subject>) ois.readObject();
             ois.close();
 
         } catch (Exception e) {

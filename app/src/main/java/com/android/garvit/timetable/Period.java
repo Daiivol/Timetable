@@ -2,11 +2,11 @@ package com.android.garvit.timetable;
 
 import java.io.Serializable;
 
-public class Periods implements Serializable {
+public class Period implements Serializable {
     private String Day;
     private String Period;
 
-    public Periods(String day, String period) {
+    public Period(String day, String period) {
         Day = day;
         Period = period;
     }
