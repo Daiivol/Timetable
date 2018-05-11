@@ -60,7 +60,9 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
         holder.delete_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Subject old_sub = SubjectList.get(position);
                 SubjectList.remove(position);
+                databaseHelper.delete_subject(old_sub);
 //                empty_file();
 //                write_list(SubjectList);
                 notifyItemRemoved(position);

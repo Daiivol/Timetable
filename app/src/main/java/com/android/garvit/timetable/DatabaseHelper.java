@@ -120,4 +120,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  SubjectList;
     }
 
+    public void delete_subject(Subject subject){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(table, name+ "=?",new String[]{subject.getName()});
+        db.close();
+    }
+
 }
