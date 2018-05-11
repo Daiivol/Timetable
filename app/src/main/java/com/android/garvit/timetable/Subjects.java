@@ -1,18 +1,21 @@
 package com.android.garvit.timetable;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Subjects implements Serializable{
     private String Name;
     private String Room;
     private String Prof;
-    private String Color;
+    private List<Periods> PeriodList;
+    private boolean Add_table;
 
-    public Subjects(String name, String room, String prof, String color) {
+    public Subjects(String name, String room, String prof, List<Periods> periodList, boolean add_table) {
         Name = name;
         Room = room;
         Prof = prof;
-        Color = color;
+        PeriodList = periodList;
+        Add_table = add_table;
     }
 
     public String getName() {
@@ -39,11 +42,19 @@ public class Subjects implements Serializable{
         Prof = prof;
     }
 
-    public String getColor() {
-        return Color;
+    public List<Periods> getPeriodList() {
+        return PeriodList;
     }
 
-    public void setColor(String color) {
-        Color = color;
+    public void setPeriodList(List<Periods> periodList) {
+        PeriodList = periodList;
+    }
+
+    public boolean isAdd_table() {
+        return Add_table;
+    }
+
+    public void setAdd_table(boolean add_table) {
+        Add_table = add_table;
     }
 }
