@@ -39,6 +39,7 @@
             android:name=".View_timetable"
             android:label="@string/title_activity_timetable"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             tools:targetApi="jelly_bean"/>
     </application>
