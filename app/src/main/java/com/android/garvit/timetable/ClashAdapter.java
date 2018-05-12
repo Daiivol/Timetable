@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,10 @@ public class ClashAdapter extends RecyclerView.Adapter<ClashAdapter.ClashViewHol
         databaseHelper = dh;
         List<Clash> mid_clash = databaseHelper.get_all_clashes();
         ClashList = get_clashes(mid_clash);
+        if(ClashList.isEmpty()){
+            Toast.makeText(mcontext, "Hurray! you resolved all clashes, now you can check your timetable", Toast.LENGTH_LONG).show();
+
+        }
     }
 
     @Override

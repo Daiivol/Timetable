@@ -231,31 +231,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  TimetableList;
     }
 
-//    public List<Clash> get_all_clash(){
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor cursor = db.rawQuery("select t1.name, t2.name , day, period from Subjects t1 ,Subjects t2 " +
-//                " where ",null);
-//
-//        List<Clash> ClashList = new ArrayList<>();
-//        if(cursor!=null) {
-//            cursor.moveToFirst();
-//        }
-//        if(cursor.moveToFirst()){
-//            do {int i;
-//                i = Integer.parseInt(cursor.getString(6));
-//                boolean new_b = (i!=0);
-//                Clash clash = new Clash(Integer.parseInt(cursor.getString(0)),
-//                        cursor.getString(1),cursor.getString(2),cursor.getString(3),
-//                        cursor.getString(4),cursor.getString(5),new_b);
-//                ClashList.add(clash);
-//            }while (cursor.moveToNext());
-//        }
-//
-//        db.close();
-//        return  ClashList;
-//    }
-
-
     public List<Clash> get_all_clashes(){
         SQLiteDatabase db = this.getReadableDatabase();
         List<Clash> clashList = new ArrayList<>();
@@ -280,8 +255,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return clashList;
     }
-
-
-
-
 }
