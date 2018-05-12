@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder> implements View.OnClickListener{
@@ -29,13 +30,14 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
 
     class SubjectViewHolder extends RecyclerView.ViewHolder{
         TextView Subject_text, Subject_info;
-        Button delete_b;
+        Button delete_b,edit_b;
 
         public SubjectViewHolder(View itemView) {
             super(itemView);
             Subject_text = itemView.findViewById(R.id.subject_text);
             Subject_info = itemView.findViewById(R.id.subject_info_text);
             delete_b = itemView.findViewById(R.id.delete_b);
+            edit_b = itemView.findViewById(R.id.edit_b);
 
 
         }
@@ -52,19 +54,35 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
     }
 
     @Override
-    public void onBindViewHolder(SubjectViewHolder holder, final int position) {
-        Subject subject = SubjectList.get(position);
+    public void onBindViewHolder(final SubjectViewHolder holder, final int position) {
+        final Subject subject = SubjectList.get(position);
         String info = "Room:"+ subject.getRoom() +" Prof:" + subject.getProf();
         holder.Subject_text.setText(subject.getName());
         holder.Subject_info.setText(info);
+        holder.edit_b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Subject old_sub = SubjectList.get(position);
+                //next four lines use new values (get them from add_layout again)
+                List<Period> PeriodList = new ArrayList<>();
+                PeriodList.add(new Period("Wed","2"));
+                PeriodList.add(new Period("Thu","4"));
+                PeriodList.add(new Period("Mon","3"));
+                Subject new_sub = new Subject(1,"Science","202","Babu", PeriodList,false);
+                //updating database
+                databaseHelper.update_subject(old_sub,new_sub);
+                SubjectList.set(position,new_sub);
+                notifyItemChanged(holder.getAdapterPosition());
+
+            }
+        });
         holder.delete_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Subject old_sub = SubjectList.get(position);
                 SubjectList.remove(position);
                 databaseHelper.delete_subject(old_sub);
-//                empty_file();
-//                write_list(SubjectList);
+
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, SubjectList.size());
             }
@@ -73,7 +91,6 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
 
     @Override
     public int getItemCount() {
-//        SubjectList = read();
         return SubjectList.size();
     }
 

@@ -40,47 +40,23 @@ public class Subject implements Serializable{
         return Id;
     }
 
-    public void setId(int id) {
-        Id = id;
-    }
-
     public String getName() {
         return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
     }
 
     public String getRoom() {
         return Room;
     }
 
-    public void setRoom(String room) {
-        Room = room;
-    }
-
     public String getProf() {
         return Prof;
-    }
-
-    public void setProf(String prof) {
-        Prof = prof;
     }
 
     public List<Period> getPeriodList() {
         return PeriodList;
     }
 
-    public void setPeriodList(List<Period> periodList) {
-        PeriodList = periodList;
-    }
-
     public boolean isAdd_table() {
         return Add_table;
-    }
-
-    public void setAdd_table(boolean add_table) {
-        Add_table = add_table;
     }
 }

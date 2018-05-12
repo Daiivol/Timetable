@@ -10,12 +10,15 @@ public class MainActivity extends AppCompatActivity {
 
     private CardView subject_cv;
     private CardView clash_cv,timetable_cv;
+    private DatabaseHelper dh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         setupuiviews();
+
+        dh = new DatabaseHelper(this);
 
         subject_cv.setOnClickListener(new View.OnClickListener() {
             @Override

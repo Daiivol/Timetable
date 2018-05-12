@@ -15,15 +15,7 @@ public class Period implements Serializable {
         return Day;
     }
 
-    public void setDay(String day) {
-        Day = day;
-    }
-
     public String getPeriod() {
         return Period;
-    }
-
-    public void setPeriod(String period) {
-        Period = period;
     }
 }

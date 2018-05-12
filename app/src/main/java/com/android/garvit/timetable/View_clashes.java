@@ -11,7 +11,9 @@ import java.util.List;
 
 public class View_clashes extends AppCompatActivity {
     private Context context;
-    List<Clash> ClashList;
+    private RecyclerView recyclerView;
+//    List<Clash> ClashList;
+    DatabaseHelper dh;
 
 
     @Override
@@ -19,23 +21,27 @@ public class View_clashes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_clashes);
 
-        RecyclerView recyclerView = findViewById(R.id.clash_cycle);
-        ClashList = new ArrayList<>();
+        recyclerView = findViewById(R.id.clash_cycle);
+//        ClashList = new ArrayList<>();
 
 
         //basic settings to run recycle view
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //sample data again
-        ClashList.add(new Clash("Math","Science" ));
-        ClashList.add(new Clash("Madfsfth","Scfeqience" ));
-        ClashList.add(new Clash("Mat3r2h","Scienfs3rce" ));
-        ClashList.add(new Clash("Matdfh","Scienfawce" ));
-        ClashList.add(new Clash("Mat3qfh","Scifqaence" ));
+        dh = new DatabaseHelper(this);
+//        ClashList = dh.get_all_clashes();
 
-        ClashAdapter adapter = new ClashAdapter(this, ClashList);
+//        //sample data again
+//        ClashList.add(new Clash("Math","Science" ));
+//        ClashList.add(new Clash("Madfsfth","Scfeqience" ));
+//        ClashList.add(new Clash("Mat3r2h","Scienfs3rce" ));
+//        ClashList.add(new Clash("Matdfh","Scienfawce" ));
+//        ClashList.add(new Clash("Mat3qfh","Scifqaence" ));
+//        List<Clash> Main_clashes = get_clashes(ClashList)
+        ClashAdapter adapter = new ClashAdapter(this, dh);
         recyclerView.setAdapter(adapter);
 
     }
+
 }
