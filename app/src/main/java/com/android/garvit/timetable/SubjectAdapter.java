@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
     class SubjectViewHolder extends RecyclerView.ViewHolder{
         TextView Subject_text, Subject_info;
         Button delete_b,edit_b;
+        android.support.v7.widget.SwitchCompat add_to_table;
 
         public SubjectViewHolder(View itemView) {
             super(itemView);
@@ -38,6 +41,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
             Subject_info = itemView.findViewById(R.id.subject_info_text);
             delete_b = itemView.findViewById(R.id.delete_b);
             edit_b = itemView.findViewById(R.id.edit_b);
+            add_to_table = itemView.findViewById(R.id.add_to_table);
 
 
         }
@@ -80,11 +84,33 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
             @Override
             public void onClick(View v) {
                 Subject old_sub = SubjectList.get(position);
-                SubjectList.remove(position);
                 databaseHelper.delete_subject(old_sub);
+                try {
+                    SubjectList.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, SubjectList.size());
+                }catch (ArrayIndexOutOfBoundsException e){e.printStackTrace();}
+            }
+        });
+        holder.add_to_table.setChecked(subject.isAdd_table());
+        holder.add_to_table.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked&&subject.isAdd_table()){
 
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, SubjectList.size());
+                }
+                else if (isChecked&&!subject.isAdd_table()){
+                    subject.setAdd_table(true);
+                    databaseHelper.add_to_table(subject);
+                }
+                else if (!isChecked&&subject.isAdd_table()){
+                    subject.setAdd_table(false);
+                    databaseHelper.add_to_table(subject);
+                }
+                else if (!isChecked&&!subject.isAdd_table()){
+
+                }
+
             }
         });
     }

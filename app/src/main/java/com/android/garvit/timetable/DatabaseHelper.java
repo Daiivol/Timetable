@@ -206,6 +206,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
     }
+    //changes only boolean value
+    public void add_to_table(Subject sub){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(add_boolean,sub.isAdd_table());
+        db.update(table,values,name+"=?",new String[]{sub.getName()});
+    }
 
     public List<Timetable> get_all_periods(){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -236,7 +243,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Clash> clashList = new ArrayList<>();
         Cursor cursor = db.rawQuery("select t1.Name, t2.Name , t1.Day , t1.period " +
                 "from Subjects t1, Subjects t2 where t1.day= t2.day " +
-                "and t1.period = t2.period and t1.name != t2.name order by t1.day;",null);
+                "and t1.period = t2.period and t1.name != t2.name and t1.intable=1 and t2.intable=1 order by t1.day;",null);
 
         if(cursor!=null) {
             cursor.moveToFirst();

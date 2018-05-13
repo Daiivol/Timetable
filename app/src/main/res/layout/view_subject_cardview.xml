@@ -6,72 +6,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <android.support.v7.widget.CardView
 
         android:id="@+id/view_subject_cv"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    app:cardElevation="8dp"
-    app:contentPadding="8dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="1.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
-
-    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="8dp"
+        app:contentPadding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/subject_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="16dp"
-            android:text=""
-            android:textAppearance="@style/Subject_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/subject_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
 
-        <Button
-            android:id="@+id/edit_b"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginStart="4dp"
-            android:text="Edit"
-            android:theme="@style/PrimaryFlatButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subject_info_text" />
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="16dp"
+                android:text=""
+                android:textAppearance="@style/Subject_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/delete_b"
-            android:layout_width="78dp"
-            android:layout_height="40dp"
-            android:text="Delete"
-            android:theme="@style/PrimaryFlatButton"
-            app:layout_constraintStart_toEndOf="@+id/edit_b"
-            app:layout_constraintTop_toBottomOf="@+id/subject_info_text" />
+            <Button
+                android:id="@+id/edit_b"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:text="Edit"
+                android:theme="@style/PrimaryFlatButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subject_info_text" />
 
-        <TextView
-            android:id="@+id/subject_info_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:text="
-"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subject_text" />
+            <Button
+                android:id="@+id/delete_b"
+                android:layout_width="78dp"
+                android:layout_height="40dp"
+                android:text="Delete"
+                android:theme="@style/PrimaryFlatButton"
+                app:layout_constraintStart_toEndOf="@+id/edit_b"
+                app:layout_constraintTop_toBottomOf="@+id/subject_info_text" />
 
-    </android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/subject_info_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subject_text" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/add_to_table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/delete_b"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.22"
+                app:layout_constraintStart_toEndOf="@+id/delete_b"
+                app:layout_constraintTop_toTopOf="@+id/delete_b" />
+        </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
     <View
         android:layout_width="match_parent"
@@ -79,4 +95,5 @@
         android:layout_below="@id/view_subject_cv"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp" />
+
 </RelativeLayout>

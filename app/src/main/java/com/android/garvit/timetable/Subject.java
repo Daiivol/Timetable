@@ -21,6 +21,13 @@ public class Subject implements Serializable{
         PeriodList = periodList;
         Add_table = add_table;
     }
+    public Subject(String name, String room, String prof, List<Period> periodList, boolean add_table) {
+        Name = name;
+        Room = room;
+        Prof = prof;
+        PeriodList = periodList;
+        Add_table = add_table;
+    }
 
     public void Log(){
         String id1 ;
@@ -58,5 +65,29 @@ public class Subject implements Serializable{
 
     public boolean isAdd_table() {
         return Add_table;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setRoom(String room) {
+        Room = room;
+    }
+
+    public void setProf(String prof) {
+        Prof = prof;
+    }
+
+    public void setPeriodList(List<Period> periodList) {
+        PeriodList = periodList;
+    }
+
+    public void setAdd_table(boolean add_table) {
+        Add_table = add_table;
     }
 }
