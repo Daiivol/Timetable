@@ -26,7 +26,7 @@
         <activity
             android:name=".Add_subjects"
             android:label="@string/title_activity_add_subjects"
-            android:parentActivityName=".View_subjects"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             tools:targetApi="jelly_bean" />
         <activity

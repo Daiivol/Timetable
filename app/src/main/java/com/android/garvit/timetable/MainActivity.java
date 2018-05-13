@@ -12,7 +12,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private CardView subject_cv;
-    private CardView clash_cv,timetable_cv;
+    private CardView clash_cv,timetable_cv,add_cv;
     private DatabaseHelper dh;
     private Toast toast;
     @Override
@@ -23,6 +23,14 @@ public class MainActivity extends AppCompatActivity {
         setupuiviews();
 
         dh = new DatabaseHelper(this);
+
+        add_cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Add_subjects.class);
+                startActivity(intent);
+            }
+        });
 
         subject_cv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         subject_cv = (CardView)findViewById(R.id.subject_cv);
         clash_cv = (CardView)findViewById(R.id.clash_cv);
         timetable_cv = (CardView)findViewById(R.id.timetable_cv);
+        add_cv = (CardView)findViewById(R.id.add_cv);
     }
 
 

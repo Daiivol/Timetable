@@ -48,6 +48,7 @@ public class View_subjects extends AppCompatActivity {
 
                 Intent intent = new Intent(View_subjects.this, Add_subjects.class);
                 startActivity(intent);
+                recyclerView.getRecycledViewPool().clear();
             }
         });
 
