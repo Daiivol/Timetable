@@ -30,6 +30,12 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             tools:targetApi="jelly_bean" />
         <activity
+            android:name=".Edit_subjects"
+            android:label="@string/title_activity_add_subjects"
+            android:parentActivityName=".View_subjects"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            tools:targetApi="jelly_bean" />
+        <activity
             android:name=".View_clashes"
             android:label="@string/title_activity_clashes"
             android:parentActivityName=".MainActivity"

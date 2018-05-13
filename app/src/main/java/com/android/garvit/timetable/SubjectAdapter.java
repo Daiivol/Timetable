@@ -1,6 +1,7 @@
 package com.android.garvit.timetable;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,16 +68,19 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
             @Override
             public void onClick(View v) {
                 Subject old_sub = SubjectList.get(position);
-                //next four lines use new values (get them from add_layout again)
-                List<Period> PeriodList = new ArrayList<>();
-                PeriodList.add(new Period("Wed","2"));
-                PeriodList.add(new Period("Thu","4"));
-                PeriodList.add(new Period("Mon","3"));
-                Subject new_sub = new Subject(1,"Science","202","Babu", PeriodList,false);
-                //updating database
-                databaseHelper.update_subject(old_sub,new_sub);
-                SubjectList.set(position,new_sub);
-                notifyItemChanged(holder.getAdapterPosition());
+//                //next four lines use new values (get them from add_layout again)
+//                List<Period> PeriodList = new ArrayList<>();
+//                PeriodList.add(new Period("Wed","2"));
+//                PeriodList.add(new Period("Thu","4"));
+//                PeriodList.add(new Period("Mon","3"));
+//                Subject new_sub = new Subject(1,"Science","202","Babu", PeriodList,false);
+//                //updating database
+//                databaseHelper.update_subject(old_sub,new_sub);
+                Intent i = new Intent(mcontext, Edit_subjects.class);
+                i.putExtra("Name",old_sub.getName());
+                mcontext.startActivity(i);
+//                SubjectList.set(position,new_sub);
+//                notifyItemChanged(holder.getAdapterPosition());
 
             }
         });

@@ -18,11 +18,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Add_subjects extends AppCompatActivity {
+public class Edit_subjects extends AppCompatActivity {
 
     private android.support.v7.widget.Toolbar toolbar;
     private DatabaseHelper dh;
-    private Subject subject;
+    private Subject sub_old;
     private ArrayList<String> list;  //convert each string to corresponding period using String[] splited = str.split("\\s+");
     private EditText subject_name, room, prof;
     private android.support.v7.widget.SwitchCompat add_to_table;
@@ -36,6 +36,8 @@ public class Add_subjects extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_subjects);
         inittoolbar();
+        Intent i = getIntent();
+        String sub_name = i.getExtras().getString("Name");
         dh = new DatabaseHelper(this);
 
         subject_name = findViewById(R.id.enter_subject_name);
@@ -43,6 +45,24 @@ public class Add_subjects extends AppCompatActivity {
         prof = findViewById(R.id.enter_prof);
         add_to_table = findViewById(R.id.add_to_table);
 
+        sub_old = dh.get_subject_from_table(sub_name);
+        
+        subject_name.setText(sub_old.getName());
+        room.setText(sub_old.getRoom());
+        prof.setText(sub_old.getProf());
+        if(sub_old.isAdd_table()) {
+            add_to_table.setChecked(true);
+        }
+        else{add_to_table.setChecked(false);
+        }
+
+        List<Period> periodList = sub_old.getPeriodList();
+        list = new ArrayList<>();
+        for(Period p : periodList){
+            String S = p.getDay() + " " + p.getPeriod();
+            list.add(S);
+        }
+        
         //To show at least one row
         if(list == null || list.size() == 0) {
             list = new ArrayList<>();
@@ -93,13 +113,13 @@ public class Add_subjects extends AppCompatActivity {
             }
             add_in_table= add_to_table.isChecked();
 
-            Subject subject1 = new Subject(subject,Room,Prof,PeriodList,add_in_table);
+            Subject sub_new = new Subject(subject,Room,Prof,PeriodList,add_in_table);
             if(subject.isEmpty()||Room.isEmpty()||PeriodList.size()==0){
-                toast.makeText(Add_subjects.this, "Please fill all necessary fields",Toast.LENGTH_LONG).show();
+                toast.makeText(Edit_subjects.this, "Please fill all necessary fields",Toast.LENGTH_LONG).show();
             }
             else {
-                dh.add_subject_to_table(subject1);
-                toast.makeText(Add_subjects.this, "Subject "+ subject + " Added!",Toast.LENGTH_LONG).show();
+                dh.update_subject(sub_old,sub_new);
+                toast.makeText(Edit_subjects.this, "Subject "+ subject + " Edited!",Toast.LENGTH_LONG).show();
                 finish();
             }
             return true;
