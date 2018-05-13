@@ -21,6 +21,8 @@ public class View_subjects extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Context context;
     List<Subject> SubjectList;
+    SubjectAdapter adapter;
+    LinearLayoutManager l1;
     DatabaseHelper dh;
 
     @Override
@@ -36,9 +38,17 @@ public class View_subjects extends AppCompatActivity {
 
         //basic settings to run recycle view
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        l1 = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(l1);
         // adding data to SubjectList
         dh = new DatabaseHelper(this);
+
+
+
+        adapter = new SubjectAdapter(this,dh);
+        //putting the cardview holder in recycle view
+        recyclerView.setAdapter(adapter);
+//        adapter.swapCursor(get_all_subjects());
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,15 +57,13 @@ public class View_subjects extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 
                 Intent intent = new Intent(View_subjects.this, Add_subjects.class);
+//                recyclerView.swapAdapter(adapter,false);
+//                recyclerView.setLayoutManager(l1);
+//                adapter.notifyDataSetChanged();
                 startActivity(intent);
-                recyclerView.getRecycledViewPool().clear();
+//                recyclerView.getRecycledViewPool().clear();
             }
         });
-
-        SubjectAdapter adapter = new SubjectAdapter(this,dh);
-        //putting the cardview holder in recycle view
-        recyclerView.setAdapter(adapter);
-//        adapter.swapCursor(get_all_subjects());
 
     }
 
